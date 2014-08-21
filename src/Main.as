@@ -34,6 +34,8 @@ package
 		
 		private function onInvoke(e:InvokeEvent):void 
 		{
+			NativeApplication.nativeApplication.removeEventListener(InvokeEvent.INVOKE, onInvoke);
+			
 			window 	= NativeApplication.nativeApplication.activeWindow;
 			cWidth	= DEF_WIDTH;
 			cHeight	= DEF_HEIGHT;
@@ -41,12 +43,12 @@ package
 			// get the command line arguments
 			for each(var s:String in e.arguments)			
 			{
-				if (s.indexOf("w=") >= 0)
+				if (s.indexOf("w=") == 0)
 				{
 					cWidth = parseInt(s.substr(2, s.length));
 				}
 				
-				if (s.indexOf("h=") >= 0)
+				if (s.indexOf("h=") == 0)
 				{
 					cHeight = parseInt(s.substr(2, s.length));
 				}
